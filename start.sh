@@ -1,0 +1,8 @@
+#!/bin/sh
+sed -i "s/\$PORT/$PORT/g" /app/nginx.conf
+cp /app/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+
+# Registra o webhook automaticamente
+curl -s "https://api.telegram.org/bot${TELEGRAM_TOKEN}/setWebhook?url=${RENDER_EXTERNAL_URL}/webhook"
+
+exec openresty -g 'daemon off;'
