@@ -1,4 +1,4 @@
-FROM openresty/openresty:alpine
+FROM openresty/openresty:noble
 
 ENV DEBIAN_FRONTEND=noninteractive
 
