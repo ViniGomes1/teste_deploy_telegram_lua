@@ -1,4 +1,4 @@
-local telegramBot = require("TelegramApiConfigure")
+local telegramBot = require("TelegramApi.TelegramApiConfigure")
 
 local function process_update(update)
     if update.message then
