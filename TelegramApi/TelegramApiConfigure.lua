@@ -9,16 +9,12 @@ TelegramApiConfigure.__index = TelegramApiConfigure
 
 function TelegramApiConfigure:new()
     local self = setmetatable({}, TelegramApiConfigure)
-    self.link = "https://api.telegram.org/bot"
-    return self
-end
-
-function TelegramApiConfigure:get_api_url()
     local token = os.getenv("TELEGRAM_TOKEN")
     if not token then
         error("TELEGRAM_TOKEN não definido!")
     end
-    return self.link .. token
+    self.api_url = "https://api.telegram.org/bot" .. token
+    return self
 end
 
 function TelegramApiConfigure:send_message(chat_id, text, opts)
@@ -30,7 +26,7 @@ function TelegramApiConfigure:send_message(chat_id, text, opts)
         parse_mode = opts.parse_mode
     })
 
-    local res, err = httpc:request_uri(self.get_api_url .. "/sendMessage", {
+    local res, err = httpc:request_uri(self.api_url .. "/sendMessage", {
         method  = "POST",
         body    = body,
         headers = {
