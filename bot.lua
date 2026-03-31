@@ -1,5 +1,4 @@
 -- bot.lua
-require("copas")  -- carrega antes de tudo
 
 local cjson = require("cjson")
 local http  = require("socket.http")
