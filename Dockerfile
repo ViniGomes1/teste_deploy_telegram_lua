@@ -30,7 +30,6 @@ RUN apt update && apt install -y \
     lua-socket \
     zlib1g-dev
 
-RUN luarocks install telegram-bot-lua
 RUN luarocks install lua-cjson
 RUN luarocks install luasocket
 RUN luarocks install htmlparser
