@@ -1,5 +1,5 @@
 local telegramBot = require("TelegramApi.TelegramApiConfigure")
-telegramBot:new()
+local botBotado = telegramBot:new()
 
 local function process_update(update)
     if update.message then
@@ -7,9 +7,9 @@ local function process_update(update)
         local text    = update.message.text or ""
 
         if text == "/start" then
-            telegramBot:send_message(chat_id, "Olá! Bot funcionando via webhook!")
+            botBotado:send_message(chat_id, "Olá! Bot funcionando via webhook!")
         else
-            telegramBot:send_message(chat_id, "Você disse: " .. text)
+            botBotado:send_message(chat_id, "Você disse: " .. text)
         end
     end
 end
