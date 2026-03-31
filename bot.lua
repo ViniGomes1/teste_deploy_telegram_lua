@@ -1,5 +1,5 @@
 local TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-local bot = require("telegram-bot-lua.core").configure(TELEGRAM_TOKEN)
+local bot = require("telegram-bot-lua").configure(TELEGRAM_TOKEN)
 
 -- Função que processa o update recebido via webhook
 function process_update(update)
