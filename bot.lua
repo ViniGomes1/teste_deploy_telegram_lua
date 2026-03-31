@@ -1,33 +1,34 @@
 -- bot.lua
-
 local cjson = require("cjson")
-local http  = require("socket.http")
-local ltn12 = require("ltn12")
+local http  = require("resty.http")  -- usa resty.http, não socket.http
 
-local TOKEN = os.getenv("TELEGRAM_TOKEN")
-local API   = "https://api.telegram.org/bot" .. TOKEN
-
--- Envia mensagem via API REST pura (sem depender da lib)
-local function send_message(chat_id, text)
-    local body = cjson.encode({
-        chat_id = chat_id,
-        text    = text
-    })
-
-    local response = {}
-    http.request({
-        url     = API .. "/sendMessage",
-        method  = "POST",
-        headers = {
-            ["Content-Type"]   = "application/json",
-            ["Content-Length"] = #body
-        },
-        source = ltn12.source.string(body),
-        sink   = ltn12.sink.table(response)
-    })
+-- Lê o token em runtime (não no topo do módulo)
+local function get_api_url()
+    local token = os.getenv("TELEGRAM_TOKEN")
+    if not token then
+        error("TELEGRAM_TOKEN não definido!")
+    end
+    return "https://api.telegram.org/bot" .. token
 end
 
--- Processa o update recebido pelo webhook
+local function send_message(chat_id, text)
+    local httpc = http.new()
+    local body  = cjson.encode({ chat_id = chat_id, text = text })
+
+    local res, err = httpc:request_uri(get_api_url() .. "/sendMessage", {
+        method  = "POST",
+        body    = body,
+        headers = {
+            ["Content-Type"] = "application/json",
+        },
+        ssl_verify = false,
+    })
+
+    if not res then
+        ngx.log(ngx.ERR, "Erro ao enviar mensagem: ", err)
+    end
+end
+
 local function process_update(update)
     if update.message then
         local chat_id = update.message.chat.id
