@@ -1,5 +1,5 @@
 local telegramBot = require("TelegramApi.TelegramApiConfigure")
-local AmazonScraping = require("AmazonScrapinClass")
+local AmazonScraping = require("ScappingClasses.AmazonScrapinClass")
 
 local urlSemPromo = "https://amzn.to/41cCZPD"
 local amazonClass = AmazonScraping:new(urlSemPromo)

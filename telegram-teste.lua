@@ -1,6 +1,6 @@
 local api = require('telegram-bot-lua').configure(os.getenv("TELEGRAM_KEY"), true)
 
-local AmazonScraping = require("AmazonScrapinClass")
+local AmazonScraping = require("ScappingClasses.AmazonScrapinClass")
 local pegasus = require("pegasus")
 local json = require("cjson")
 
