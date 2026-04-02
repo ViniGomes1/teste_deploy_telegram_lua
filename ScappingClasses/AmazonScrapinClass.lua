@@ -6,6 +6,12 @@ local htmlparser = require("htmlparser")
 AmazonScrapingClass = {}
 AmazonScrapingClass.__index = AmazonScrapingClass
 
+print("Aguardando Splash inicializar...")
+os.execute("sleep 5") 
+-- Agora tenta a conexão usando a variável de ambiente
+local url = os.getenv("SPLASH_URL")
+print(url)
+
 function AmazonScrapingClass:new(link)
     local self = setmetatable({}, AmazonScrapingClass)
     self.link = link
