@@ -10,6 +10,9 @@ RUN /usr/local/openresty/luajit/bin/luajit -e "print('LuaJIT OK')"
 RUN opm get ledgetech/lua-resty-http
 RUN opm get openresty/lua-resty-string
 
+RUN luarocks install luasocket
+RUN luarocks install htmlparser
+
 WORKDIR /app
 COPY . .
 

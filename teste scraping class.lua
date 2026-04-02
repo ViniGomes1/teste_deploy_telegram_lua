@@ -1,4 +1,4 @@
-local AmazonScraping = require("AmazonScrapinClass")
+local AmazonScraping = require("ScappingClasses.AmazonScrapinClass")
 
 local urlSemPromo = "https://amzn.to/41cCZPD"
 local urlComPromo = "https://amzn.to/3PGoWz1" -- com promocao
