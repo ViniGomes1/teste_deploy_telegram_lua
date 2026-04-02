@@ -35,6 +35,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
         source = ltn12.source.string(request_data),
         sink = ltn12.sink.table(response)
     })
+    print(response[1])
     local htmlRendered = table.concat(response)
     local root = htmlparser.parse(htmlRendered, 5000)
     if center == true then
@@ -45,7 +46,6 @@ function AmazonScrapingClass:parseHtmlCenter(center)
 end
 
 function AmazonScrapingClass:productTitle(centerCol)
-    print(centerCol)
     return centerCol:select("span#productTitle")[1]:getcontent()
 end
 
