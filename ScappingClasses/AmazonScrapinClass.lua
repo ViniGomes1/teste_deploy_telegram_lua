@@ -43,6 +43,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
     })
     print(response[1])
     local htmlRendered = table.concat(response)
+    print("Conteúdo recebido do Splash: ", htmlRendered:sub(1, 200))
     local root = htmlparser.parse(htmlRendered, 5000)
     if center == true then
         return root:select("div#centerCol")[1]
