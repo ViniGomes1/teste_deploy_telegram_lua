@@ -45,7 +45,11 @@ function AmazonScrapingClass:parseHtmlCenter(center)
 end
 
 function AmazonScrapingClass:productTitle(centerCol)
-    return centerCol:select("span#productTitle")[1]:getcontent()
+    if centerCol == nil then
+        return "Falso"
+    else 
+        return centerCol:select("span#productTitle")[1]:getcontent()
+    end
 end
 
 function AmazonScrapingClass:productImage(root)
