@@ -40,4 +40,28 @@ function TelegramApiConfigure:send_message(chat_id, text, opts)
     end
 end
 
+function TelegramApiConfigure:send_photo(chat_id, photo, caption, opts)
+    opts = opts or {}
+    local httpc = http.new()
+    local body  = cjson.encode({
+        chat_id = chat_id, 
+        caption = caption,
+        photo = photo,
+        parse_mode = opts.parse_mode
+    })
+
+    local res, err = httpc:request_uri(self.api_url .. "/sendPhoto", {
+        method  = "POST",
+        body    = body,
+        headers = {
+            ["Content-Type"] = "application/json",
+        },
+        ssl_verify = false,
+    })
+
+    if not res then
+        ngx.log(ngx.ERR, "Erro ao enviar mensagem: ", err)
+    end
+end
+
 return TelegramApiConfigure
