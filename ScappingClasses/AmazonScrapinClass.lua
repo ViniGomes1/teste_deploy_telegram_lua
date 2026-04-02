@@ -45,7 +45,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
 end
 
 function AmazonScrapingClass:productTitle(centerCol)
-    print(centerCol:select("span#productTitle")[1]:getcontent())
+    print(centerCol)
     return centerCol:select("span#productTitle")[1]:getcontent()
 end
 
