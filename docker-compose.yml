@@ -1,12 +1,10 @@
 version: '3.8'
 services:
-  # O serviço do Splash (já configurado)
   splash:
     image: scrapinghub/splash
     ports:
       - "8050:8050"
 
-  # O seu programa em Lua
   meu-app-lua:
     build: .
     depends_on:
@@ -16,4 +14,5 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    # command: lua seu_script.lua
+    tty: true  # Permite que o container fique aberto para interação
+    command: lua ScappingClasses/AmazonScrapinClass.lua
