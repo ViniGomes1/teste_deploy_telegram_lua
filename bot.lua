@@ -37,7 +37,7 @@ local function process_update(update)
         local cmd, arg = text:match("^(/(%w+))%s*(.*)$")
 
         if cmd == "/amazon" then
-            print("o arg: " .. arg)
+            print("o arg: " .. arg .. "o cmd: " .. cmd)
             local amazonClass = AmazonScraping:new(arg)
             local root = amazonClass:parseHtmlCenter(false)
             local urlImage = amazonClass:urlImage(root)
