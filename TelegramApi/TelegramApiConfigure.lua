@@ -2,8 +2,6 @@
 local cjson = require("cjson")
 local http  = require("resty.http")  -- usa resty.http, não socket.http
 
-print("Achado telegram api")
-
 TelegramApiConfigure = {}
 TelegramApiConfigure.__index = TelegramApiConfigure
 

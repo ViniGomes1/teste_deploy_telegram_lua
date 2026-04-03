@@ -13,9 +13,8 @@ function AmazonScrapingClass:new(link)
     self.link = link
     local token = os.getenv("SPLASH_URL")
     if not token then
-        error("TELEGRAM_TOKEN não definido!")
+        error("SPLASH_URL não definido!")
     end
-    print(token)
     self.splash = token
     self.lua_script = [[
     function main(splash, args)
