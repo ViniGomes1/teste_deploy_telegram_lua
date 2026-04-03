@@ -19,7 +19,7 @@ local function process_update(update)
             print("alggo que da certo")
             local title = amazonClass:productTitle(centerCol)
             print(title)
-            botBotado:send_message(chat_id, "Você disse: " .. text)
+            botBotado:send_message(chat_id, "Você disse: " .. title)
         end
     end
 end
