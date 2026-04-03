@@ -11,7 +11,7 @@ local function sendAmazonTextProduct(url)
     local centerCol = amazonClass:parseHtmlCenter()
     --local title = amazonClass:productTitle(centerCol)
     --local price = amazonClass:price(centerCol)
-    print(centerCol)
+    print(centerCol:getcontent())
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:urlImage(root)
     if fromPrice == false then
