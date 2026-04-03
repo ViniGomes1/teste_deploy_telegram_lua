@@ -11,7 +11,12 @@ AmazonScrapingClass.__index = AmazonScrapingClass
 function AmazonScrapingClass:new(link)
     local self = setmetatable({}, AmazonScrapingClass)
     self.link = link
-    self.splash = os.getenv("SPLASH_URL")
+    local token = os.getenv("SPLASH_URL")
+    if not token then
+        error("TELEGRAM_TOKEN não definido!")
+    end
+    print(token)
+    self.splash = token
     self.lua_script = [[
     function main(splash, args)
         splash:go(args.url)
