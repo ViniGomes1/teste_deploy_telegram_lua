@@ -45,7 +45,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
     local root = htmlparser.parse(htmlRendered, 5000)
     if center == false then
         return root
-    else
+    elseif center == true then
         return root:select("div#centerCol")[1]
     end
 end

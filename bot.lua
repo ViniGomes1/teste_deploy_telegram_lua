@@ -9,20 +9,20 @@ local function sendAmazonTextProduct(url)
     local amazonClass = AmazonScraping:new(url)
     local root = amazonClass:parseHtmlCenter(false)
     local centerCol = amazonClass:parseHtmlCenter()
-    --local title = amazonClass:productTitle(centerCol)
-    --local price = amazonClass:price(centerCol)
-    print(centerCol:getcontent())
+    local title = amazonClass:productTitle(centerCol)
+    local price = amazonClass:price(centerCol)
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:urlImage(root)
+    print(urlImage)
     if fromPrice == false then
         outText = {
-            --text = "<b>" .. title "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     else
 
         outText = {
-            --text = "<b>" .. title "</b>" .. "\n" .. "DE: " .. fromPrice .. "\n" .. "PARA: " .. price  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title "</b>" .. "\n" .. "DE: " .. fromPrice .. "\n" .. "PARA: " .. price  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     end
@@ -37,11 +37,8 @@ local function process_update(update)
         local cmd, arg = text:match("([^%s]+)%s+(.+)")
 
         if cmd == "/amazon" then
-            print("o arg: " .. arg .. "o cmd: " .. cmd)
-            local amazonClass = AmazonScraping:new("https://amzn.to/41cCZPD")
-            local root = amazonClass:parseHtmlCenter()
-            local title = amazonClass:productTitle(root)
-            botBotado:send_photo(chat_id, "https://m.media-amazon.com/images/I/61A9XU5z-JL._AC_SX425_.jpg", title, {parse_mode = 'HTML'})
+            local amazon = sendAmazonTextProduct("https://amzn.to/41cCZPD")
+            botBotado:send_photo(chat_id, amazon.imageUrl, amazon.text, {parse_mode = 'HTML'})
         else
             botBotado:send_message(chat_id, "Você disse: " .. text)
         end
