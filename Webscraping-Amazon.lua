@@ -21,7 +21,7 @@ local urlComPromo = "https://amzn.to/3PGoWz1" -- com promocao
 
 local request_data = json.encode({
     lua_source = lua_script,
-    url = urlSemPromo
+    url = urlNoPix
 })
 
 local response = {}
@@ -44,18 +44,14 @@ local root = htmlparser.parse(rendered_html, 5000)
 local image = root:select("img#landingImage")[1]
 print(image.attributes.src)
 
--- local centerCol = root:select("div#centerCol")[1]
--- local productTitle = centerCol:select("div#title_feature_div")[1]:select("span#productTitle")
-
--- local priceHole = centerCol:select("span.apex-pricetopay-value")[1]
--- local preco = priceHole.nodes[2].nodes[1]:getcontent() .. priceHole.nodes[2].nodes[2]:getcontent():gsub("<[^>]+>", "") .. priceHole.nodes[2].nodes[3]:getcontent()
-
--- local fromPrice = centerCol:select("span.apex-basisprice-value")[1]
--- print(productTitle)
-
--- print(preco)
--- if fromPrice ~= nil then
---     local precoInicial = string.gsub(fromPrice:select("span.a-offscreen")[1]:getcontent(), "R$", "")
---     print(precoInicial)
--- end
-
+local centerCol = root:select("div#centerCol")[1]
+local productTitle = centerCol:select("div#title_feature_div")[1]:select("span#productTitle")
+local priceHole = centerCol:select("span.apex-pricetopay-value")[1]
+local preco = priceHole.nodes[2].nodes[1]:getcontent() .. priceHole.nodes[2].nodes[2]:getcontent():gsub("<[^>]+>", "") .. priceHole.nodes[2].nodes[3]:getcontent()
+local fromPrice = centerCol:select("span.apex-basisprice-value")[1]
+print(productTitle)
+print(preco)
+if fromPrice ~= nil then
+    local precoInicial = string.gsub(fromPrice:select("span.a-offscreen")[1]:getcontent(), "R$", "")
+    print(precoInicial)
+end
