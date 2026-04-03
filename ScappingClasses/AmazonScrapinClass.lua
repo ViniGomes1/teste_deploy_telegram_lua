@@ -6,6 +6,7 @@ local htmlparser = require("htmlparser")
 AmazonScrapingClass = {}
 AmazonScrapingClass.__index = AmazonScrapingClass
 
+local SPLASH = os.getenv("SPLASH_URL")
 
 
 function AmazonScrapingClass:new(link)
@@ -28,7 +29,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
         url = self.link
     })
     http.request({
-        url = "http://localhost:8050/execute",
+        url = SPLASH .. "/execute",
         method = "POST",
         headers = {
             ["Content-Type"] = "application/json",
