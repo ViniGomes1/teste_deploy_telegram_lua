@@ -10,9 +10,9 @@ local function sendAmazonTextProduct(url)
 
     local amazonClass = AmazonScraping:new(url)
     local root = amazonClass:parseHtmlCenter(false)
-    local centerCol = amazonClass:parseHtmlCenter()
-    local title = amazonClass:productTitle(centerCol)
-    local price = amazonClass:price(centerCol)
+    local centerCol = amazonClass:parseHtmlCenter(true)
+    --local title = amazonClass:productTitle(centerCol)
+    --local price = amazonClass:price(centerCol)
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:urlImage(root)
     if fromPrice == false then
