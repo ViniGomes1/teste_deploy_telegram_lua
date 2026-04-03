@@ -6,8 +6,6 @@ local htmlparser = require("htmlparser")
 AmazonScrapingClass = {}
 AmazonScrapingClass.__index = AmazonScrapingClass
 
-
-
 function AmazonScrapingClass:new(link)
     local self = setmetatable({}, AmazonScrapingClass)
     self.link = link
@@ -27,6 +25,7 @@ function AmazonScrapingClass:new(link)
 end
 
 function AmazonScrapingClass:parseHtmlCenter(center)
+    center = center or true
     local response = {}
     local request_data = json.encode({
         lua_source = self.lua_script,

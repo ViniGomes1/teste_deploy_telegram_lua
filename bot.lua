@@ -38,7 +38,7 @@ local function process_update(update)
 
         if cmd == "/amazon" then
             print("o arg: " .. arg .. "o cmd: " .. cmd)
-            local amazonClass = AmazonScraping:new(arg)
+            local amazonClass = AmazonScraping:new("https://amzn.to/41cCZPD")
             local root = amazonClass:parseHtmlCenter(false)
             local urlImage = amazonClass:urlImage(root)
             botBotado:send_photo(chat_id, urlImage, "algo", {parse_mode = 'HTML'})
