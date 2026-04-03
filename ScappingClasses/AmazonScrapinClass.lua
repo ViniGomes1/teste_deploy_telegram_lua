@@ -6,12 +6,12 @@ local htmlparser = require("htmlparser")
 AmazonScrapingClass = {}
 AmazonScrapingClass.__index = AmazonScrapingClass
 
-local SPLASH = os.getenv("SPLASH_URL")
 
 
 function AmazonScrapingClass:new(link)
     local self = setmetatable({}, AmazonScrapingClass)
     self.link = link
+    self.splash = os.getenv("SPLASH_URL")
     self.lua_script = [[
     function main(splash, args)
         splash:go(args.url)
@@ -29,7 +29,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
         url = self.link
     })
     http.request({
-        url = SPLASH .. "/execute",
+        url = self.splash .. "/execute",
         method = "POST",
         headers = {
             ["Content-Type"] = "application/json",

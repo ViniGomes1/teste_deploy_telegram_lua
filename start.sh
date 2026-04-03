@@ -7,7 +7,6 @@ until curl -sf $SPLASH_URL > /dev/null; do
 done
 echo "Splash pronto!"
 
-
 sed -i "s/\$PORT/$PORT/g" /app/nginx.conf
 cp /app/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
