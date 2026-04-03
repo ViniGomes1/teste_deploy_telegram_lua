@@ -34,7 +34,7 @@ local function process_update(update)
     if update.message then
         local chat_id = update.message.chat.id
         local text    = update.message.text or ""
-        local cmd, arg = text:match("^(/(%w+))%s*(.*)$")
+        local cmd, arg = text:match("([^%s]+)%s+(.+)")
 
         if cmd == "/amazon" then
             print("o arg: " .. arg .. "o cmd: " .. cmd)
