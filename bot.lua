@@ -17,14 +17,13 @@ local function sendAmazonTextProduct(url)
     local urlImage = amazonClass:urlImage(root)
     if fromPrice == false then
         outText = {
-            text = "<b>" .. title "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
+            --text = "<b>" .. title "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
-
     else
 
         outText = {
-            text = "<b>" .. title "</b>" .. "\n" .. "DE: " .. fromPrice .. "\n" .. "PARA: " .. price  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
+            --text = "<b>" .. title "</b>" .. "\n" .. "DE: " .. fromPrice .. "\n" .. "PARA: " .. price  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     end
@@ -40,7 +39,7 @@ local function process_update(update)
 
         if cmd == "/amazon" then
             local amazon = sendAmazonTextProduct(arg)
-            botBotado:send_photo(chat_id, amazon.imageUrl, amazon.text, {parse_mode = 'HTML'})
+            botBotado:send_photo(chat_id, amazon.imageUrl, "algo", {parse_mode = 'HTML'})
         else
             botBotado:send_message(chat_id, "Você disse: " .. text)
         end
