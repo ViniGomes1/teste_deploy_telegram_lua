@@ -1,8 +1,6 @@
 local telegramBot = require("TelegramApi.TelegramApiConfigure")
 local AmazonScraping = require("ScappingClasses.AmazonScrapinClass")
 
-
-
 local botBotado = telegramBot:new()
 
 local function sendAmazonTextProduct(url)
@@ -10,9 +8,10 @@ local function sendAmazonTextProduct(url)
 
     local amazonClass = AmazonScraping:new(url)
     local root = amazonClass:parseHtmlCenter(false)
-    local centerCol = amazonClass:parseHtmlCenter(true)
+    local centerCol = amazonClass:parseHtmlCenter()
     --local title = amazonClass:productTitle(centerCol)
     --local price = amazonClass:price(centerCol)
+    print(centerCol)
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:urlImage(root)
     if fromPrice == false then
