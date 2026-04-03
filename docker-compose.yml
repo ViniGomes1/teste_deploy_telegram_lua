@@ -15,6 +15,8 @@ services:
   meu-app-lua:
     build: .
     depends_on:
+      splash:
+        condition: service_healthy
       - splash
     environment:
       - SPLASH_URL=http://localhost:8050
@@ -22,4 +24,4 @@ services:
       - .:/app
     working_dir: /app
     tty: true
-    command: lua ScappingClasses/AmazonScrapinClass.lua
+    command: lua teste scraping class.lua
