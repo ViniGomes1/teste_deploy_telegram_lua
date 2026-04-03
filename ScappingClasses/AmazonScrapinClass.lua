@@ -44,10 +44,10 @@ function AmazonScrapingClass:parseHtmlCenter(center)
     })
     local htmlRendered = table.concat(response)
     local root = htmlparser.parse(htmlRendered, 5000)
-    if center == true then
-        return root:select("div#centerCol")[1]
-    else
+    if center == false then
         return root
+    else
+        return root:select("div#centerCol")[1]
     end
 end
 
