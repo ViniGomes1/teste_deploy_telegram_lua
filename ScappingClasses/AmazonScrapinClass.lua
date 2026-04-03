@@ -42,9 +42,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
         source = ltn12.source.string(request_data),
         sink = ltn12.sink.table(response)
     })
-    print(response[1])
     local htmlRendered = table.concat(response)
-    print("Conteúdo recebido do Splash: ", htmlRendered:sub(1, 200))
     local root = htmlparser.parse(htmlRendered, 5000)
     if center == true then
         return root:select("div#centerCol")[1]
@@ -76,6 +74,11 @@ function AmazonScrapingClass:price(centerCol)
     local priceHole = centerCol:select("span.apex-pricetopay-value")[1]
     local preco = priceHole.nodes[2].nodes[1]:getcontent() .. priceHole.nodes[2].nodes[2]:getcontent():gsub("<[^>]+>", "") .. priceHole.nodes[2].nodes[3]:getcontent()
     return preco
+end
+
+function AmazonScrapingClass:urlImage(root)
+    local image = root:select("img#landingImage")[1]
+    return image.attributes.src
 end
 
 
