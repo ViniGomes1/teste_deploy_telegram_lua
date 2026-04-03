@@ -32,7 +32,7 @@ function AmazonScrapingClass:parseHtmlCenter(center)
         url = self.link
     })
     http.request({
-        url = "http://splash:8050/execute",
+        url = "http://localhost:8050/execute",
         method = "POST",
         headers = {
             ["Content-Type"] = "application/json",
