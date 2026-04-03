@@ -5,21 +5,14 @@ services:
     image: scrapinghub/splash
     ports:
       - "8050:8050"
-    healthcheck:
-    test: ["CMD", "curl", "-f", "http://localhost:8050"]
-    interval: 5s
-    timeout: 3s
-    retries: 5
 
   # O seu programa em Lua
   meu-app-lua:
     build: .
     depends_on:
-      splash:
-        condition: service_healthy
       - splash
     environment:
-      - SPLASH_URL=http://localhost:8050
+      - SPLASH_URL=http://splash:8050
     volumes:
       - .:/app
     working_dir: /app

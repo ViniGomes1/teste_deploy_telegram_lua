@@ -6,3 +6,5 @@ cp /app/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 curl -s "https://api.telegram.org/bot${TELEGRAM_TOKEN}/setWebhook?url=${RENDER_EXTERNAL_URL}/webhook"
 
 exec openresty -g 'daemon off;'
+
+curl "http://splash:8050/execute"
