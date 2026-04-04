@@ -12,7 +12,7 @@ local function sendAmazonTextProduct(url)
     local title = amazonClass:productTitle(centerCol)
     local price = amazonClass:price(centerCol)
     local fromPrice = amazonClass:fromPrice(centerCol)
-    local urlImage = amazonClass:urlImage(root)
+    local urlImage = amazonClass:productImage(root)
     print(urlImage)
     if fromPrice == false then
         outText = {

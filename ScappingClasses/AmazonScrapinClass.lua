@@ -75,11 +75,5 @@ function AmazonScrapingClass:price(centerCol)
     return preco
 end
 
-function AmazonScrapingClass:urlImage(root)
-    local image = root:select("img#landingImage")[1]
-    return image.attributes.src
-end
-
-
 
 return AmazonScrapingClass
