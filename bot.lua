@@ -15,13 +15,13 @@ local function sendAmazonTextProduct(url)
 
     if fromPrice == false then
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. "\n" .. "\nPOR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     else
 
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n" .. "DE: " .. fromPrice .. "\n" .. "PARA: " .. price  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. "\n\n" .. "DE: " .. "<del>" .. fromPrice .. "</del>" .. "\n" .. "PARA: " .. "<b>" .. price .. "</b>"  .. "\n" .. "\nACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     end
