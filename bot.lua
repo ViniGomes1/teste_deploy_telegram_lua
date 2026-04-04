@@ -45,11 +45,11 @@ local function process_update(update)
         elseif cmd == "/mercadolivre" then
             botBotado:send_message(chat_id,"mercado livre está em desenvolvimento atualmente")
         elseif cmd == "/sair" then
-            botBotado:send_message(chat_id, "saindo(eu não sai verdadeiramente) &#1F47B; &#1F47B;", {parse_mode = 'HTML'})
+            botBotado:send_message(chat_id, "saindo(eu não sai verdadeiramente) &#8986;", {parse_mode = 'HTML'})
         else
             botBotado:send_message(chat_id, "Primeiramente saiba que o bot tem apenas UMA funcionalidade, escolha ela abaixo \n" ..
-            "/mercado_livre {link} para fazer um anuncio mercado livre a partir de um link" ..
-            "/amazon {link} para fazer um anuncio amazon a partir de um link" ..
+            "/mercado_livre {link} para fazer um anuncio mercado livre a partir de um link \n" ..
+            "/amazon {link} para fazer um anuncio amazon a partir de um link\n" ..
             "/sair para sair")
         end
     end
