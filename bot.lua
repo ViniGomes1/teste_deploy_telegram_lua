@@ -17,13 +17,22 @@ local function sendAmazonTextProduct(url)
 
     if fromPrice == false then
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n" .. "\nPOR APENAS: " .. price .. "\n".. bestOfferText .. "\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. "\n" .. 
+            "\nPOR APENAS: " .. price .. 
+            "\n".. bestOfferText .. 
+            "\nACESSANDO PELO LINK: " .. url..
+            "\n!!&#129421;Promoção sujeita a alteração, aproveite&#129421;!!",
             imageUrl = urlImage
         }
     else
 
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n\n" .. "DE: " .. "<del>" .. fromPrice .. "</del>" .. "\n" .. "PARA: " .. "<b>" .. price .. "</b>"  .. "\n" .. bestOfferText .. "\n\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. 
+            "\n\n" .. "DE: " .. "<del>" .. fromPrice .. "</del>" .. "\n"
+            .. "PARA: " .. "<b>" .. price .. "</b>"  .. 
+            "\n" .. bestOfferText .. 
+            "\n\nACESSANDO PELO LINK: " .. url ..
+            "\n!!&#129421;Promoção sujeita a alteração, aproveite&#129421;!!",
             imageUrl = urlImage
         }
     end
