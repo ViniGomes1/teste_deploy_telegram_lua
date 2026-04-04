@@ -64,8 +64,8 @@ function AmazonScrapingClass:parseHtHtmlRoot()
         sink = ltn12.sink.table(response)
     })
     local htmlRendered = table.concat(response)
-    local root = htmlparser.parse(htmlRendered, 5000)
-
+    local root = htmlparser.parse(htmlRendered, 7000)
+    print("getado: " .. root:gettext())
     return root
 end
 
@@ -74,6 +74,7 @@ function AmazonScrapingClass:productTitle(centerCol)
 end
 
 function AmazonScrapingClass:productImage(root)
+    print(root:gettext())
     return root:select("img#landingImage")[1].attributes.src
 end
 
