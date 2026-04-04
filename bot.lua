@@ -32,7 +32,7 @@ local function sendAmazonTextProduct(url)
             .. "PARA: " .. "<b>" .. price .. "</b>"  .. 
             "\n" .. bestOfferText .. 
             "\n\nACESSANDO PELO LINK: " .. url ..
-            "\n!!&#129421;Promoção sujeita a alteração, aproveite&#129421;!!",
+            "\n\n!!&#129421;Promoção sujeita a alteração, aproveite&#129421;!!",
             imageUrl = urlImage
         }
     end
