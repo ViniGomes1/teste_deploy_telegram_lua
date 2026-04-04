@@ -42,31 +42,9 @@ function AmazonScrapingClass:parseHtmlCenter()
     })
     local htmlRendered = table.concat(response)
     local root = htmlparser.parse(htmlRendered, 5000)
+    local centerCol = root:select("div#centerCol")[1]
 
-    return root:select("div#centerCol")[1]
-end
-
-function AmazonScrapingClass:parseHtHtmlRoot()
-    center = center or true
-    local response = {}
-    local request_data = json.encode({
-        lua_source = self.lua_script,
-        url = self.link
-    })
-    http.request({
-        url = self.splash .. "/execute",
-        method = "POST",
-        headers = {
-            ["Content-Type"] = "application/json",
-            ["Content-Length"] = tostring(#request_data)
-        },
-        source = ltn12.source.string(request_data),
-        sink = ltn12.sink.table(response)
-    })
-    local htmlRendered = table.concat(response)
-    local root = htmlparser.parse(htmlRendered, 7000)
-    print("getado: " .. root:gettext())
-    return root
+    return root, centerCol
 end
 
 function AmazonScrapingClass:productTitle(centerCol)

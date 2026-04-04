@@ -7,13 +7,12 @@ local function sendAmazonTextProduct(url)
     local outText = {}
 
     local amazonClass = AmazonScraping:new(url)
-    local root = amazonClass:parseHtmlCenter()
-    local centerCol = amazonClass:parseHtHtmlRoot()
+    local root, centerCol = amazonClass:parseHtmlCenter()
     local title = amazonClass:productTitle(centerCol)
     local price = amazonClass:price(centerCol)
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:productImage(root)
-    
+
     if fromPrice == false then
         outText = {
             text = "<b>" .. title "</b>" .. "\n" .. "POR APENAS: " .. price .. "\n" .. "ACESSANDO PELO LINK: " .. url,
