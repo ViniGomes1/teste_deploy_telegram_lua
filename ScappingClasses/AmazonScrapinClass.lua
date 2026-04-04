@@ -52,7 +52,6 @@ function AmazonScrapingClass:productTitle(centerCol)
 end
 
 function AmazonScrapingClass:productImage(root)
-    print(root:gettext())
     return root:select("img#landingImage")[1].attributes.src
 end
 
@@ -65,6 +64,12 @@ function AmazonScrapingClass:fromPrice(centerCol)
     else
         return false
     end
+end
+
+--best-offer-string-cc
+
+function AmazonScrapingClass:bestOffer(centerCol)
+    return centerCol:select("span#best-offer-string-cc")[1]:getcontent()
 end
 
 function AmazonScrapingClass:price(centerCol)
