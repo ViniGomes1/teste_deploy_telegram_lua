@@ -42,12 +42,11 @@ local function process_update(update)
             else
                 botBotado:send_message(chat_id, "o link amazon é incompatível, deve conter pelo menos https://amzn.to/")
             end
-        else if cmd == "/mercadolivre" then
+        elseif cmd == "/mercadolivre" then
             botBotado:send_message(chat_id,"mercado livre está em desenvolvimento atualmente")
-        else if cmd == "/sair" then
+        elseif cmd == "/sair" then
             botBotado:send_message(chat_id, "saindo(eu não sai verdadeiramente) &#1F47B; &#1F47B;", {parse_mode = 'HTML'})
-        end
-        end
+        else
             botBotado:send_message(chat_id, "Primeiramente saiba que o bot tem apenas UMA funcionalidade, escolha ela abaixo \n" ..
             "/mercado_livre {link} para fazer um anuncio mercado livre a partir de um link" ..
             "/amazon {link} para fazer um anuncio amazon a partir de um link" ..
