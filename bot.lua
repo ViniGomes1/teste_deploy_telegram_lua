@@ -36,7 +36,7 @@ local function process_update(update)
         local cmd, arg = text:match("([^%s]+)%s+(.+)")
 
         if cmd == "/amazon" then
-            local amazon = sendAmazonTextProduct("https://amzn.to/41cCZPD")
+            local amazon = sendAmazonTextProduct(arg)
             botBotado:send_photo(chat_id, amazon.imageUrl, amazon.text, {parse_mode = 'HTML'})
         else
             botBotado:send_message(chat_id, "Você disse: " .. text)
