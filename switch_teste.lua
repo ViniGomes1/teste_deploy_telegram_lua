@@ -1,11 +1,3 @@
-local urlAz = "https://amzn.to/3PGoWz1"
+local urlAz = "ou R$&nbsp;149,99 em até 5x de R$&nbsp;30,03 sem juros"
 
-if string.match(urlAz, "https://amzn.to/") then
-    print("algo")
-elseif false then
-    print("nao")
-    elseif false then
-        print("ak")
-else
-    print("alsa")
-end
+print(string.gsub(urlAz, "&nbsp;", ""))

@@ -13,16 +13,17 @@ local function sendAmazonTextProduct(url)
     local fromPrice = amazonClass:fromPrice(centerCol)
     local urlImage = amazonClass:productImage(root)
     local bestOffer = amazonClass:bestOffer(centerCol)
+    local bestOfferText = string.gsub(bestOffer, "&nbsp;", "")
 
     if fromPrice == false then
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n" .. "\nPOR APENAS: " .. price .. "\n".. bestOffer .. "\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. "\n" .. "\nPOR APENAS: " .. price .. "\n".. bestOfferText .. "\nACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     else
 
         outText = {
-            text = "<b>" .. title .. "</b>" .. "\n\n" .. "DE: " .. "<del>" .. fromPrice .. "</del>" .. "\n" .. "PARA: " .. "<b>" .. price .. "</b>"  .. "\n" .. bestOffer .. "\n\nACESSANDO PELO LINK: " .. url,
+            text = "<b>" .. title .. "</b>" .. "\n\n" .. "DE: " .. "<del>" .. fromPrice .. "</del>" .. "\n" .. "PARA: " .. "<b>" .. price .. "</b>"  .. "\n" .. bestOfferText .. "\n\nACESSANDO PELO LINK: " .. url,
             imageUrl = urlImage
         }
     end
