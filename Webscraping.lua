@@ -1,31 +1,54 @@
 local http = require("socket.http")
---local gumbo = require("gumbo")
 local htmlparser = require("htmlparser")
 
--- local ggram
--- https://meli.la/2B5iCCJ -> desconto com pix - polyPrice = algo
--- https://meli.la/1A4F2pe -> desconto sem pix - polyPrice = nil
--- https://amzn.to/4k6dVlz
-local body = http.request('https://meli.la/1A4F2pe')
+local body = http.request('https://meli.la/2R2WMiA')
 
 local documento = htmlparser.parse(body)
 
 local content = documento:select("div.poly-card__content")
-local algo = content[1]:getcontent()
+local portada = documento:select("div.poly-card__portada")
 
-print(algo)
+local polyContent = content[1]:select("div.poly-component__price")[1]
 
-local polyContent = algo:getElementsByClassName("poly-content")[1]
+local title = content[1]:select("a.poly-component__title")[1]:getcontent()
 
-local MoneyAmount = polyContent:getElementsByClassName("andes-money-amount__fraction")
-local polyPrice = polyContent:getElementsByClassName("poly-price__disc_label")[1]
+print(title)
+local CurrentPrice = ""
+local noInteiroPoly = polyContent:select("span.andes-money-amount")[1]:gettext()
+CurrentPrice = noInteiroPoly:gsub("<[^>]+>", "")
 
--- Verifica se o desconto é no pix 
-if polyPrice ~= nil then
-    print(polyPrice)
+print(CurrentPrice)
+
+local PreviousPrice = ""
+if polyContent:select("s.andes-money-amount")[1] ~= nil then
+    if polyContent:select("s.andes-money-amount")[1].nodes[3] ~= nil then
+        PreviousPrice = polyContent:select("s.andes-money-amount")[1].nodes[1].nodes[1]:getcontent() .. 
+            polyContent:select("s.andes-money-amount")[1].nodes[2]:getcontent() .. 
+            polyContent:select("s.andes-money-amount")[1].nodes[3]:getcontent() .. 
+            polyContent:select("s.andes-money-amount")[1].nodes[4]:getcontent()
+    else
+        PreviousPrice = polyContent:select("s.andes-money-amount")[1].nodes[1].nodes[1]:getcontent() .. 
+        polyContent:select("s.andes-money-amount")[1].nodes[2]:getcontent()
+    end
 end
 
--- retorna os valores do desconto [1 = valor anterior, 2 = valor atual, 3 = valor no cartão] - o 3 so aparece as vezes
-for i, valor in ipairs(MoneyAmount) do
-    print(i, valor.textContent)
+print(PreviousPrice)
+
+local discountPercentage
+if polyContent:select("div.poly-price__current")[1].nodes[2] ~= nil then
+    discountPercentage = polyContent:select("div.poly-price__current")[1].nodes[2]:getcontent()
 end
+
+local picture = portada[1]:select("img.poly-component__picture")[1].attributes.src
+
+print(discountPercentage)
+print(picture)
+
+local priceInstallments = ""
+
+if polyContent:select("span.poly-price__installments")[1] ~= nil then
+    local noInteiro = polyContent:select("span.poly-price__installments")[1]:gettext()
+    priceInstallments = noInteiro:gsub("<[^>]+>", "")
+end
+
+print(priceInstallments)

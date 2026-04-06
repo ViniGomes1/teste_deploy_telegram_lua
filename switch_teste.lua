@@ -1,3 +1,3 @@
-local urlAz = "ou R$&nbsp;149,99 em até 5x de R$&nbsp;30,03 sem juros"
+local urlAz = "bea"
 
-print(string.gsub(urlAz, "&nbsp;", ""))
+print(urlAz == "bea" and "sal" or "vazio")
