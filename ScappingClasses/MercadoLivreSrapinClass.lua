@@ -12,7 +12,7 @@ end
 
 function MercadoLivreScrapingClass:bodyHtml()
     local body = http.request(self.link)
-    return htmlparser.parse(body)
+    return htmlparser.parse(body, 3000)
 end
 
 function MercadoLivreScrapingClass:content()

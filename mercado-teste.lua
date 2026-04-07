@@ -1,13 +1,13 @@
 local mercadoClass = require("ScappingClasses.MercadoLivreSrapinClass")
 
---local classeMercado = mercadoClass:new("https://meli.la/1kpxzKU")
---local polyContent = classeMercado:polyContent()
---print(classeMercado:title())
---print(classeMercado:picture())
---print(classeMercado:currentPrice(polyContent))
---print(classeMercado:previousPrice(polyContent))
---print(classeMercado:discountPercentage(polyContent))
---print(classeMercado:priceInstallments(polyContent))
+local classeMercado = mercadoClass:new("https://meli.la/2Jby9Xh")
+local polyContent = classeMercado:polyContent()
+print(classeMercado:title())
+print(classeMercado:picture())
+print(classeMercado:currentPrice(polyContent))
+print(classeMercado:previousPrice(polyContent))
+print(classeMercado:discountPercentage(polyContent))
+print(classeMercado:priceInstallments(polyContent))
 
 local function sendMercadoLivreTextProduct(url)
     local outText = {}
@@ -87,4 +87,4 @@ local function sendMercadoLivreTextProduct2Avg(url)
 end
 
 
-print(sendMercadoLivreTextProduct2Avg("https://meli.la/2Jby9Xh").text)
+--print(sendMercadoLivreTextProduct2Avg("https://meli.la/2Jby9Xh").text)
